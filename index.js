@@ -13,8 +13,10 @@ app.use(cors({
     'http://localhost:3000',  // Vite default port
     'http://localhost:5173',  // Another common Vite port
     'http://localhost:5000',  // Keep this if needed
+    'https://batchhub.netlify.app' ,
     'http://127.0.0.1:3000',
-    'http://127.0.0.1:5173'
+    'http://127.0.0.1:5173',
+
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
