@@ -215,20 +215,21 @@ router.get('/google',
 
 // Updated Google callback with token generation
 router.get('/google/callback',
-  passport.authenticate('google', { session: false, failureRedirect: 'http://localhost:3000/login?error=google_auth_failed' }),
+  passport.authenticate('google', { session: false, failureRedirect: `${process.env.CLIENT_URL}/login?error=google_auth_failed` }),
   (req, res) => {
     try {
       // Generate JWT token for the Google-authenticated user
       const token = generateToken(req.user._id);
-      
+
       // Redirect to frontend with token
-      res.redirect(`http://localhost:3000/auth/callback?token=${token}`);
+      res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
     } catch (error) {
       console.error('Google callback error:', error);
-      res.redirect('http://localhost:3000/login?error=token_generation_failed');
+      res.redirect(`${process.env.CLIENT_URL}/login?error=token_generation_failed`);
     }
   }
 );
+
 
 // Get current user (works with both session and JWT)
 router.get('/current', async (req, res) => {
